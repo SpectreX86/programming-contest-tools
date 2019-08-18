@@ -18,7 +18,7 @@ std::vector<T> measureDistance(T root,  Tree<T> tree){
     std::vector<T> distance(N);
     std::stack<T> stack;
     T parent = root;
-    distance[parent-1]=0l;
+    distance[parent-1]=static_cast<T>(0);
     isVisited[parent-1]=true;
     stack.push(parent);
     T child;
