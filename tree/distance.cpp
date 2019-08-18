@@ -6,20 +6,23 @@
 
 //calculate the distance of nodes from the root.
 
-using Edge = std::map< std::string, long int>; //edges should have "child" and "length" keys.
-using Tree = std::map<long int, std::vector<Edge> >;
+template<class T>
+using Edge = std::map< std::string, T>; //each edge must have "child" and "length" keys for this calculation
+template<class T>
+using Tree = std::map<T, std::vector<Edge<T> > >;
 
-std::vector<long int> measureDistance(long int root,  Tree tree){
-    long int N = tree.size();
+template<class T>
+std::vector<T> measureDistance(T root,  Tree<T> tree){
+    T N = tree.size();
     std::vector<bool> isVisited(N,false);
-    std::vector<long int> distance(N);
-    std::stack<long int> stack;
-    long int parent = root;
+    std::vector<T> distance(N);
+    std::stack<T> stack;
+    T parent = root;
     distance[parent-1]=0l;
     isVisited[parent-1]=true;
     stack.push(parent);
-    long int child;
-    long int length;
+    T child;
+    T length;
     while(!stack.empty()){
         parent = stack.top();
         stack.pop();
@@ -37,15 +40,15 @@ std::vector<long int> measureDistance(long int root,  Tree tree){
 }
 
 int main(int argc, char *argv[]){
-    constexpr long int N=5; //number of nodes
+    constexpr int N=5; //number of nodes
 
-    long int u[N-1] = {2l,2l,1l,3l},v[N-1]={5l,3l,3l,4l}; //nodes at the edge ends
-    long int w[N-1] = {2l,10l,8l,2l}; //length of the edges
+    int u[N-1] = {2,2,1,3},v[N-1]={5,3,3,4}; //nodes at the edge ends
+    int w[N-1] = {2,10,8,2}; //length of the edges
 
     //construct tree structure
-    Tree tree; //tree structure
-    Edge edge;
-    for(long int i=0; i<N-1; ++i){
+    Tree<int> tree; //tree structure
+    Edge<int> edge;
+    for(int i=0; i<N-1; ++i){
         edge.clear();
         edge["length"] = w[i];
         edge["child"] = v[i];
