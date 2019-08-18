@@ -4,7 +4,7 @@
 #include <map>
 #include <string>
 
-//get the parents of each node.
+//get the parents of each node. the parent of the root is the root itself.
 
 template<class T>
 using Edge = std::map< std::string, T>; //each edge must have "child" key for this calculation
