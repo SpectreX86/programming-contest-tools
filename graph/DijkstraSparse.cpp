@@ -4,7 +4,6 @@
 #include <queue>
 #include <limits>
 #include <utility>
-#include <functional>
 #include <string>
 
 template<class T>
