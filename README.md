@@ -1,6 +1,8 @@
 # programming-contest-tools
 tools for programming contests just for fun
 
+- graph: tools for algorithms involving graph.
+  - DijkstraSparse.cpp: calculates the shortest path and its distance for sparse graph.
 - integer: tools for integer problems.
   - gcd.cpp: calculates gcd.
   - lcm.cpp: calculates lcm.
