@@ -6,35 +6,39 @@
 #include <utility>
 #include <string>
 
+//find the shortest path and its distance with Dijkstra algorithm.
+
 template<class T>
-using Edge = std::map<std::string, T>;
+using Edge = std::map<std::string, T>; //for this algorithm, an edge must have "vertex" and "length" keys.
 template<class T>
 using Graph = std::map<T, std::vector<Edge<T> > >;
 
+//The id of a vertex in the graph must be in [0,V).
 template<class T>
-std::pair<T, std::vector<T> > Dijkstra(Graph<T> &graph, const T &start, const T &end){
-    T V = graph.size();
-    std::vector<T> distance(V, std::numeric_limits<int>::max());
-    std::vector<T> predecessor(V, std::numeric_limits<int>::max());
-    std::vector<bool> isVisited(V,false);
+std::pair<T, std::vector<T> > Dijkstra(Graph<T> &graph, const T &V, const T &start, const T &end){
+    const T distanceSup = std::numeric_limits<T>::max();
+    std::vector<T> distance(V, distanceSup);
+    std::vector<T> predecessor(V, distanceSup);
+    std::vector<bool> isVisited(V, false);
     distance[start] = 0;
+    predecessor[start] = start;
 
     auto compare = [](const std::pair<T,T> &a, const std::pair<T,T> &b){
-                        return a.second > b.second;
-                    };
+        return a.second > b.second;
+    };
     std::priority_queue<std::pair<T,T>, std::vector<std::pair<T,T> >, decltype(compare)> queue(compare);
     queue.emplace(start,distance[start]);
-    predecessor[start] = start;
     T pred, suc;
-    std::pair<T,T> tmp;
     T distTmp;
     while(!queue.empty()){
-        tmp = queue.top();
-        pred = tmp.first;
+        pred = queue.top().first;
+        if(isVisited[pred]){
+            continue;
+        }
         isVisited[pred] = true;
         queue.pop();
 
-        if(pred == end){
+        if(pred == end || distance[pred] == distanceSup){
             break;
         }
 
@@ -68,7 +72,7 @@ int main(int argc, char *argv[]){
     }
 
     int S=0, T=3;
-    auto test = Dijkstra(graph, S, T);
+    auto test = Dijkstra(graph, 5, S, T);
     std::cout << "distance: " << test.first << std::endl;
     int p = T;
     std::cout << "path: (goal) " << p;
