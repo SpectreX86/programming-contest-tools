@@ -33,6 +33,7 @@ std::pair<T, std::vector<T> > Dijkstra(Graph<T> &graph, const T &V, const T &sta
     while(!queue.empty()){
         pred = queue.top().first;
         if(isVisited[pred]){
+            queue.pop();
             continue;
         }
         isVisited[pred] = true;
@@ -60,19 +61,17 @@ std::pair<T, std::vector<T> > Dijkstra(Graph<T> &graph, const T &V, const T &sta
 }
 
 int main(int argc, char *argv[]){
+    constexpr int N = 5;
     constexpr int M = 7;
     int u[M] = {0,1,2,4,3,2,0}, v[M] = {1,2,4,3,0,3,4};
     int w[M] = {2,3,1,7,8,5,4};
     Graph<int> graph;
-    Edge<int> edge;
     for(int i=0; i<M; ++i){
-        edge["vertex"] = v[i];
-        edge["length"] = w[i];
-        graph[u[i]].emplace_back(edge);
+        graph[u[i]].emplace_back(Edge<int>{{"vertex",v[i]},{"length",w[i]}});
     }
 
-    int S=0, T=3;
-    auto test = Dijkstra(graph, 5, S, T);
+    constexpr int S=0, T=3;
+    auto test = Dijkstra(graph, N, S, T);
     std::cout << "distance: " << test.first << std::endl;
     int p = T;
     std::cout << "path: (goal) " << p;
