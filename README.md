@@ -1,6 +1,9 @@
 # programming-contest-tools
 tools for programming contests just for fun
 
+- flow: tools for network flow algorithms.
+  - EdmonsKarp.cpp: estimates the maximum flow in the network with Edmons-Karp algorithm.
+  - FordFulkerson.cpp: estimates the maximum flow in the network Ford-Fulkerson algorithm.
 - graph: tools for algorithms involving graph.
   - DijkstraSparse.cpp: calculates the shortest path and its distance for sparse graph (a single start and a single goals).
   - BellmanFord.cpp: calculates the shortest paths and their distance (a single start and plural goals).
