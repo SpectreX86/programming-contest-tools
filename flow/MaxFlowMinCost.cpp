@@ -40,7 +40,7 @@ std::pair<bool,Path> FindAugumentingPath(FlowNetwork &network, const T &source, 
     T costTmp;
     while(!queue.empty()){
         pred = queue.top().first;
-        if(queue.top().second > cost[pred]){
+        if(queue.top().second > cost[pred]){ //version management
             queue.pop();
             continue;
         }
