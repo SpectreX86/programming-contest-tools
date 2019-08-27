@@ -115,10 +115,10 @@ void MaxFlowMinCost(FlowNetwork &network, const T &source, const T &sink){
             auto &edge = path[suc].first.get();
             if(path[suc].second){
                 pred = edge["pred"];
-                edge["flow"] += dFlow; //相方のエッジ(suc-->pred)も更新するべき。
+                edge["flow"] += dFlow;
             }else{
                 pred = edge["suc"];
-                edge["flow"] -= dFlow; ////相方のエッジ(suc-->pred)も更新するべき。
+                edge["flow"] -= dFlow;
             }
             suc = pred;
         }
