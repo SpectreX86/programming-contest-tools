@@ -58,7 +58,7 @@ std::pair<bool,Path> FindAugumentingPath(FlowNetwork &network, const T &source, 
     return std::pair<bool, Path>(false, path);
 }
 
-void FordFulkerson(FlowNetwork &network, const T &source, const T &sink){
+void EdmonsKarp(FlowNetwork &network, const T &source, const T &sink){
     const T dFlowSup = std::numeric_limits<T>::max();
 
     std::pair<bool, Path> result;
@@ -113,7 +113,7 @@ int main(int argc, char *argv[]){
         network[v[i]].second.emplace_back(Edge{{"pred",u[i]},{"suc",v[i]},{"capasity",c[i]},{"flow",0}});
     }
 
-    FordFulkerson(network, source, sink);
+    EdmonsKarp(network, source, sink);
     for(auto edges : network){
         for(auto edge : edges.first){
             std::cout << edge["pred"] << " --> " << edge["suc"] << "\t:\t" << edge["flow"] << " / " << edge["capasity"] << std::endl;
