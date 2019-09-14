@@ -10,6 +10,7 @@ public:
         for(T i=0; i<N; ++i){
             tree[i] = i;
         }
+        nGroup = N;
     }
 
     T root(const T idx){
@@ -27,17 +28,24 @@ public:
     }
 
     void merge(const T idx1, const T idx2){
-        tree[root(idx1)] = root(idx2);
+        if(!same(idx1, idx2)){
+            tree[root(idx1)] = root(idx2);
+            --nGroup;
+        }
     }
 
     bool same(const T idx1, const T idx2){
         return root(idx1) == root(idx2);
     }
 
+    T groups(){
+        return nGroup;
+    }
+
 private:
     std::vector<T> tree;
+    T nGroup;
 };
-
 
 int main(int argc, char *argv[]){
     constexpr int N=6, M=5;
@@ -46,15 +54,8 @@ int main(int argc, char *argv[]){
     for(int i=0; i<M; ++i){
         tree.merge(--X[i],--Y[i]);
     }
-    std::vector<int> roots(N,0);
-    for(int i=0; i<N; ++i){
-        roots[tree.root(i)] = 1;
-    }
-    int cost = 0;
-    for(auto &element : roots){
-        cost += element;
-    }
-    std::cout << cost << std::endl;
+
+    std::cout << tree.groups() << std::endl;
 
     return 0;
 }
