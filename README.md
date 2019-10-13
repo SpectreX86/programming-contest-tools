@@ -18,7 +18,8 @@ tools for programming contests just for fun
   - lcm.cpp: calculates lcm.
   - inverse.cpp: calculates array of x^{-1}  modulo a prime m for x in [1, N] as compile time constant.
   - [!] extGCD.cpp: solves indeterminate equations.
-  - divisors.cpp: finds all the divisors of given number.
+  - divisor.cpp: finds all the divisors of a given number.
+  - PrimeFactor.cpp: finds all the prime factors of a given number.
 - print: tools for printing classes.
   - vector.cpp: prints a vector in a line.
 - tree: tools for algorithms involving tree.
