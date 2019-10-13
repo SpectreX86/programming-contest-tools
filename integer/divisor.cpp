@@ -5,10 +5,12 @@
 
 template<class T>
 std::vector<T> getDivisors(T N){
+    T zero = static_cast<T>(0); 
+    T one = static_cast<T>(1);
     std::queue<T> D_lower;
     std::stack<T> D_upper;
-    for(T i=static_cast<T>(1); i*i<=N; ++i){
-        if(N%i == 0){
+    for(T i=one; i*i<=N; ++i){
+        if(N%i == zero){
             D_lower.emplace(i);
             if(i*i != N){
                 D_upper.emplace(N/i);
