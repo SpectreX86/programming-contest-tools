@@ -1,6 +1,6 @@
 # programming-contest-tools
 tools for programming contests just for fun  
-"[!]" means the program have not verified by solving any programming contest.
+"[!]" stands for the program have not verified by solving any programming contest problem.
 
 - flow: tools for network flow algorithms.
   - [!] EdmonsKarp.cpp: estimates the maximum flow in the network with Edmons-Karp algorithm.
