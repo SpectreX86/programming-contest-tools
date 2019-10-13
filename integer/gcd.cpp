@@ -1,8 +1,10 @@
 #include <iostream>
 
-unsigned long int GCD(unsigned long int m, unsigned long int n){
-    unsigned long int r;
-    while((r=m%n) != 0){
+template <class T>
+T GCD(T m, T n){
+    const T zero = static_cast<T>(0);
+    T r;
+    while((r=m%n) != zero){
         m = n;
         n = r;
     }
@@ -10,7 +12,7 @@ unsigned long int GCD(unsigned long int m, unsigned long int n){
 }
 
 int main(int argc, char *argv[]){
-    unsigned long int N=18l, M=12l;
+    unsigned long long N=18LL, M=12LL;
     std::cout << GCD(N,M) << std::endl;
     return 0;
 }
