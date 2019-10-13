@@ -7,6 +7,7 @@ tools for programming contests just for fun
   - [!] FordFulkerson.cpp: estimates the maximum flow in the network with Ford-Fulkerson algorithm.
   - [!] MaxFlowMinCost.cpp: estimates the minimum cost under the maximum flow in the network with Edmons-Karp+Dijkstra-like algorithm.
 - graph: tools for algorithms involving graph.
+  - tsort.cpp: sorts a graph topologically or, if impossible, detects cycles in the graph.
   - DijkstraSparse.cpp: calculates the shortest path and its distance for sparse graph (a single start and plural goals).
   - [!] BellmanFord.cpp: calculates the shortest paths and their distance (a single start and plural goals).
   - SPFA.cpp: a faster version of BellmanFord.
