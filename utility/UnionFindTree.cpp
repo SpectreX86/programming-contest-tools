@@ -1,15 +1,20 @@
 #include <iostream>
 #include <vector>
 #include <stack>
+#include <numeric>
 
 template<class T>
 class UnionFindTree{
 public:
     UnionFindTree(const T N){
+        const T zero = static_cast<T>(0);
+        const T one = static_cast<T>(1);
+
         tree = std::vector<T>(N);
-        for(T i=0; i<N; ++i){
-            tree[i] = i;
-        }
+        std::iota(tree.begin(),tree.end(),zero);
+
+        sizes = std::vector<T>(N,one);
+
         nGroup = N;
     }
 
@@ -29,6 +34,7 @@ public:
 
     void merge(const T idx1, const T idx2){
         if(!same(idx1, idx2)){
+            sizes[root(idx2)] = size(idx1) + size(idx2);
             tree[root(idx1)] = root(idx2);
             --nGroup;
         }
@@ -38,12 +44,17 @@ public:
         return root(idx1) == root(idx2);
     }
 
+    T size(const T idx){
+        return sizes[root(idx)];
+    }
+
     T groups(){
         return nGroup;
     }
 
 private:
-    std::vector<T> tree;
+    std::vector<T> tree; //parents of each nodes
+    std::vector<T> sizes; //memory for the size of each group which includes each node (sizes[root(idx)] is the size of the group which includes idx, not sizes[idx] it self).
     T nGroup;
 };
 
